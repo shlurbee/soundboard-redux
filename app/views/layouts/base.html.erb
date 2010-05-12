@@ -5,25 +5,15 @@
 <head>
 	<title>SoundBoard Redux - <%= controller.action_name %></title>
 	<%= stylesheet_link_tag 'base' %>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
 </head>
 <body>
 	<div id="sitewrapper">
-		<div id="header">
-			<h1>SoundBoard Redux</h1>
-		</div>
-    <% if @me %>
-      <div>
-        You are connected as <%= @me.username %>
-        <%= link_to "logout", logout_path %>
-      </div>
-    <% end %>
+		<h1>SoundBoard Redux</h1>
+    <div id="description">
+      Soundboard is a demo app for showing how Connect with SoundCloud works.
+    </div>
 		<div id="content">
-			<% if flash[:notice] -%> 
-			<div id="notice"><%= flash[:notice] %></div> 
-			<% end -%>
-			<% if flash[:error] -%> 
-			<div id="error"><%= flash[:error] %></div> 
-			<% end -%>
 			<%= yield :layout %>
 		</div>
 		<div id="footer">
@@ -32,3 +22,4 @@
 	</div>
 </body>
 </html>
+

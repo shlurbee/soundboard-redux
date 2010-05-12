@@ -25,10 +25,10 @@ class OauthController < ApplicationController
     # auth successful. save info in the session
     session[:access_token] = access_token.token
     session[:access_token_secret] = access_token.secret
-    # redirecting to the sc-connect/close.html invokes the js callback provided
-    # when the sc-connect button was wired up. any get params provided in this 
-    # redirect url will be packaged as a query_obj and passed to the callback
-    redirect_to "/sc-connect/close.html?username=#{CGI::escape(me.username)}"
+    # Redirecting to sc-connect-compete.html closes the popup window and
+    # invokes your js callback. Params appended to this url will be passed to
+    # the callback.
+    redirect_to "/sc-connect-complete.html?username=#{CGI::escape(me.username)}"
   end
 
 end

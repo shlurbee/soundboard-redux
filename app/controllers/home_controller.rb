@@ -8,18 +8,22 @@ class HomeController < ApplicationController
                                             session[:access_token_secret])
       sc = Soundcloud.register({:access_token => access_token, 
                                 :site => "http://api.#{$sc_host}"})
-      @me = sc.User.find_me
-      @avatar_url = @me.avatar_url
-      @public_tracks = []
-      @private_tracks = []
-      @me.tracks.each do |track|
-        if track.sharing == 'private' #todo: helper method
-          @private_tracks << track
-        else
-          @public_tracks << track
+      begin
+        @me = sc.User.find_me
+        @avatar_url = @me.avatar_url
+        @public_tracks = []
+        @private_tracks = []
+        @me.tracks.each do |track|
+          if track.sharing == 'private' #todo: helper method
+            @private_tracks << track
+          else
+            @public_tracks << track
+          end
         end
+      rescue
+        # bad access token / secret ? logout and start over
+        redirect_to :action => 'logout'
       end
-
     else
       redirect_to :action => 'login'
     end

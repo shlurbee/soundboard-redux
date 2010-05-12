@@ -48,4 +48,5 @@ Rails::Initializer.run do |config|
   consumer_secret = '58XuHMx11yomPZnMw6vbseJNGpiRe0KUnFyTCcigY'
   $sc_host = 'sandbox-soundcloud.com'
   $sc_consumer = Soundcloud.consumer(consumer_token, consumer_secret, "http://api.#{$sc_host}")
+
 end

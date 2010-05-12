@@ -1,5 +1,15 @@
 
-<img src=<%= @avatar_url %>>
+<img class="profile-pic" src=<%= @avatar_url %>>
+
+<div class="profile-text">
+  <center>You are connected as <b><%= @me.username %></b></center>
+  <%= link_to "logout", 
+        {:controller => "home", :action => "logout"},
+        {:id => "sc-disconnect"}      
+  %>
+</div>
+
+<div style="clear:both;" />
 
 <div id="public_tracks" class="tracks">
   You have <%= @public_tracks.size %> public tracks.
@@ -23,4 +33,3 @@
   </ul>
 
 </div>
-

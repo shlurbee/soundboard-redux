@@ -4,3 +4,4 @@ module ApplicationHelper
     "/home/logout"
   end
 end
+
