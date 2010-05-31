@@ -44,9 +44,13 @@ Rails::Initializer.run do |config|
   # config.i18n.default_locale = :de
 
   # SoundCloud API OAuth settings
-  consumer_token = 'deJElGMeHUQB1KV5rAR0A'
-  consumer_secret = '58XuHMx11yomPZnMw6vbseJNGpiRe0KUnFyTCcigY'
-  $sc_host = 'sandbox-soundcloud.com'
+  consumer_token = ENV['SC_CONSUMER_TOKEN']
+  consumer_secret = ENV['SC_CONSUMER_SECRET']
+  $sc_host = 'soundcloud.com'
   $sc_consumer = Soundcloud.consumer(consumer_token, consumer_secret, "http://api.#{$sc_host}")
+  # NOTE: if deploying to heroku, set the token and secret env vars with the heroku
+  # command line and then deploy, like:
+  #   heroku config:add SC_CONSUMER_TOKEN=<YOUR TOKEN> SC_CONSUMER_SECRET=<YOUR SECRET>
+  #   git push heroku master 
 
 end
